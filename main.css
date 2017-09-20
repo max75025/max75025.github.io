@@ -1,0 +1,250 @@
+.none{
+  display: none;
+}
+  
+
+
+.mask {
+    background-color:rgba(0,0,0,.7);
+    height:100%;
+    position:absolute;
+    width:100%;
+    top:0;
+    left:0;
+    z-index: 3;
+    animation: shadow  25s;
+    display: none;
+    
+}
+
+
+.sky{
+  background:url(http://www.wallpaperup.com/uploads/wallpapers/2015/06/02/708372/93228bcea23c6ea1ee1192e506fffce6.jpg) repeat rgb(129, 183, 255);
+  position: relative;
+  width: 1500px;
+  height: 800px;
+}
+
+.grass{
+  width:100%;
+  height: 30%;
+  background: url("https://st.depositphotos.com/1828227/2599/v/950/depositphotos_25997859-stock-illustration-green-grass-texture-seamless-pattern.jpg") repeat rgb(12, 179, 29);
+  background-size: 15%;
+  position: absolute;
+  bottom: 0;
+
+}
+
+.sun{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background:radial-gradient(white, rgb(244, 241, 26) );
+  position: absolute;
+  top: 25px;
+  right: 150px;
+ z-index: 4;
+  box-shadow: 0 0 50px #F8A50E;
+  transition: box-shadow  .4s ease;
+}
+
+.moon{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background:black;
+  position: absolute;
+  top: 25px;
+  right: 150px;
+  z-index: 5;
+  display: block;
+  animation: moon 25s ;
+  display: none;
+
+}
+
+.trunk{
+  width: 50px;
+  height: 200px;
+  background:url("https://us.123rf.com/450wm/pixelsaway/pixelsaway1407/pixelsaway140700013/29844813-texture-of-an-oak-tree-trunk-with-vertical-bark-patterns.jpg?ver=6") repeat-y rgb(113, 58, 0);
+  background-size: 100%;
+  position: absolute;
+  bottom:200px;
+  left: 200px;
+}
+
+.leaves{
+  height: 250px;
+  width: 180px;
+  border-radius: 50%;
+  background:url("https://st.depositphotos.com/1284918/2252/v/950/depositphotos_22527761-stock-illustration-foliage-seamless-pattern.jpg") repeat rgb(17, 149, 42);
+  background-size: 70%;
+  position: absolute;
+  bottom:280px;
+  left: 135px;
+  z-index: 2;
+}
+
+.wall{
+  width:350px;
+  height: 150px;
+  background:url("http://ru.vectorboom.com/Tutorials/BrickBackground/final.jpg") repeat #B35924;
+  background-size: 20%;
+  position: absolute;
+  top:430px;
+  right: 140px;
+}
+.roof{
+  width: 370px;
+  height:100px;
+  border: 30px solid transparent;
+   border-bottom: 50px solid #D53636;
+   position: absolute;
+   top:270px;
+   right: 100px;
+
+}
+
+.door{
+  position: absolute;
+  top:50px;
+  left: 40px;
+  width: 50px;
+  height: 100px;
+  background: url(http://damache.com.ng/wp-content/uploads/2013/07/SIX-PANEL-DOOR.png) no-repeat #242424;
+  background-size: 100%;
+}
+
+.window{
+  position: absolute;
+   top:50px;
+  left: 150px;
+  width: 70px;
+  height: 70px;
+  background: url(http://www.stickpng.com/assets/thumbs/58b41d64102ddecdee0dd03f.png) no-repeat #FFD910;
+  background-size: 100%;
+}
+
+[class*="cloud"]{
+  float:left;
+  position: absolute;
+  display:block;  
+  width: 200px;
+  height: 100px;
+}
+.cloud1{
+  top: 170px;
+   animation: moveCloud 40s linear infinite ;
+}
+
+
+.cloud2{
+  top: 250px;
+   animation: moveCloud 60s linear infinite;
+}
+.cloud3{
+  top: 300px;
+   animation: moveCloud 90s linear infinite;
+}
+
+
+
+
+
+[class*="circle"]{
+  width: 50px;
+  height: 50px;
+  background: #EDEDED;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 0 0 10px #EDEDED;
+}
+.circle1{
+  top:40px;
+  left: 10px;
+}
+.circle2{
+  top:40px;
+  left: 80px;
+}
+.circle5{
+  top:40px;
+  left: 40px;
+}
+.circle3{
+  top:20px;
+  left: 20px;
+}
+.circle4{
+  top:20px;
+  left: 50px;
+}
+
+.buttons{
+position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 4;
+  width:100px;
+  height: 200px;
+}
+
+button{
+  width: 100px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+
+@keyframes shadow{
+   0%{
+  
+  opacity: 0;
+  }
+  25%{
+    opacity: 0;
+  }
+  50%{
+     
+  opacity: 1;
+  }
+  85%{
+    opacity: 0;
+  }
+  100%{
+  opacity: 0;
+  }
+}
+
+
+@keyframes moon{
+  0%{
+     top: 25px;
+  right: -100px;
+  opacity: 0;
+  }
+  20%{
+    opacity: 0;
+  }
+  25%{
+    opacity: 1;
+  }
+  50%{
+     top: 25px;
+  right: 150px;
+  opacity: 1;
+  }
+  85%{
+    opacity: 0;
+  }
+  100%{
+     top: 25px;
+  right: 500px;
+  opacity: 0;
+  }
+}
+
+@keyframes moveCloud{
+  from{left: -200px;}
+  to{left: 1500px;}
+}
