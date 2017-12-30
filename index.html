@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2017mem</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div id="main" class="main">
+        <h1>Старый новый мем</h1>
+        <h3>игра для веселой компании по мотивам мемов и трендов 2017 года</h3>
+        <h2>правила</h2>
+        <p>участники по очереди получают карточки, читают вслух, что там написано, и выполняют задание</p>
+        <p>игра подходит для компании от 3 человек. Необязательно играть быстро, можно растяуть выполнение заданий на всю ночь. Победителей нет, но веселая ночь гарантирована.</p>
+        <p>Специальные карты: Ждун(3 шт), Эщкере(2 шт), Биткоин(5шт)</p>
+        <p>Благодаря сайту memepedia.ru</p>
+        <div class=buttonCenter>
+            <button id="start" data-ripple onclick="createStack()">start</button>
+        </div>
+    </div>
+    <div id="cart" class="cart">
+        <p class="imgWrapper"><img id="img" src="" alt="image"></p>
+        <div class=buttonCenter>
+            <button id="next" data-ripple onclick="setImg()">next</button>
+        </div>
+    </div>
+    <script src="js.js"></script>
+    <script src="ripple.js"></script>
+    <script>
+    // just add effect to elements
+    Array.prototype.forEach.call(document.querySelectorAll('[data-ripple]'), function(element) {
+        // find all elements and attach effect
+        new RippleEffect(element); // element is instance of javascript element node
+    });
+    </script>
+    <footer>
+        <p align="center"> автор сайта Вдовиченко М.</p>
+    </footer>
+</body>
+
+</html>
