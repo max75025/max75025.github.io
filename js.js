@@ -17,7 +17,7 @@ Array.prototype.shuffle = function(b) {
 
 function createStack() {
     var arr = [];
-    for (var i = 63; i >= 1; i--) {
+    for (var i = 76; i >= 1; i--) {
         arr.push(i);
     }
 
