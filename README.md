@@ -1,2 +1,3 @@
 # max75025.github.io
-site in clear css
+site display your life in weeks
+

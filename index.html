@@ -1,41 +1,218 @@
 <!DOCTYPE html>
-<html lang="ru">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <title>2018mem</title>
-    <link rel="stylesheet" href="main.css">
+	<meta charset="UTF-8">
+	<title>Life</title>
+	<style>
+	body{
+		font-family: Arial, sans-serif;
+	}
+
+
+	.week {
+		width: 17px;
+		height: 17px;
+		
+		margin:2px;
+		display: inline-block;
+	}
+	.container, .form{
+		margin:auto;
+		width: fit-content;
+	}
+	.form{
+		margin-top:1%;
+		margin-bottom: 1%;
+		display: flex;
+
+	}
+	button{
+		margin-top:10%;
+		width: 100%;
+	}
+	input{
+		margin-top: 5%;
+	}
+
+	.disc{
+		margin-left: 10px;
+	}
+
+	.yl{
+		margin-right: 4px;
+		width: 26px;
+		font-size:22px;
+		text-align: right;
+		display: inline-block;
+
+	}
+	.red{
+		background-color:red;
+	}
+	.green{
+		background-color:green;
+	}
+
+	.blue{
+		background-color:blue;
+	}
+
+	.purple{
+		background-color: purple;
+	}
+	
+	.teal{
+		background-color: teal;
+	}
+
+	.cornflowerBlue{
+		background-color: cornflowerBlue;
+	}
+	.darkKhaki{
+		background-color: darkKhaki;
+	}
+
+	.saddleBrown{
+		background-color: saddleBrown;
+	}
+	.gray{
+		background-color: gray;
+	}
+
+</style>
 </head>
-
 <body>
-    <div id="main" class="main">
-        <h1>Старый новый мем </h1>
-        <h3>игра для веселой компании по мотивам мемов и трендов 2018 года</h3>
-        <h2>правила</h2>
-        <p>участники по очереди получают карточки, читают вслух, что там написано, и выполняют задание</p>
-        <p>игра подходит для компании от 3 человек. Необязательно играть быстро, можно растяуть выполнение заданий на всю ночь. Победителей нет, но веселая ночь гарантирована.</p>
-        <p>Специальные карты: Наклз(3 шт), Ржомба(3 шт), Кто прочитал то сдохнет(3 шт)</p>
-        <p>Благодаря сайту memepedia.ru</p>
-        <div class=buttonCenter>
-            <button id="start" data-ripple onclick="createStack()">start</button>
-        </div>
-    </div>
-    <div id="cart" class="cart">
-        <p class="imgWrapper"><img id="img" src="" alt="image"></p>
-        <div class=buttonCenter>
-            <button id="next" data-ripple onclick="setImg()">next</button>
-        </div>
-    </div>
-    <script src="js.js"></script>
-    <script src="ripple.js"></script>
-    <script>
-    // just add effect to elements
-    Array.prototype.forEach.call(document.querySelectorAll('[data-ripple]'), function(element) {
-        // find all elements and attach effect
-        new RippleEffect(element); // element is instance of javascript element node
-    });
-    </script>
-</body>
+	<div class="form">
+		<form action="">
+			<input id="birthday" type="date" required><br>
+			<button id="submit" type="button" onclick="calcWeeksFrom()">посчитать</button>
+		</form>
+		<div class="disc">
+			<div class="week purple"></div> <span>- детство</span><br>
+			<div class="week teal"></div> <span>- школа</span><br>
+			<div class="week cornflowerBlue"></div> <span>- институт</span><br>
+			
+		</div>
+		<div class="disc">
+			<div class="week darkKhaki"></div> <span>- работа</span><br>
+			<div class="week saddleBrown"></div> <span>- пенсия</span><br>
+			<div class="week gray"></div> <span>- не расчитывай</span><br>
+		</div>
+		<div class="disc">
+			<div class="week blue"></div> <span>- текущая неделя</span><br>
+			<div class="week red"></div> <span>- прошедшие недели</span><br>
+			
+		</div>
+	</div>
 
+	<div class="container">
+		
+	</div>
+
+	<script>
+		var MAX_YEAR = 100;
+		var CHILD = 6;
+		var SCHOOL = 17;
+		var INSTITUTE = 23;
+		var WORK = 60;
+		var OLD = 70;
+
+
+		var input = document.getElementById("birthday");
+
+		// Execute a function when the user releases a key on the keyboard
+		input.addEventListener("keyup", function(event) {
+		  // Number 13 is the "Enter" key on the keyboard
+		  if (event.keyCode === 13) {
+		    // Cancel the default action, if needed
+		    event.preventDefault();
+		    // Trigger the button element with a click
+		    document.getElementById("submit").click();
+		}
+		});
+
+
+
+
+function daysFromDate(date) {
+
+		    // The number of milliseconds in one day
+		    var ONE_DAY = 1000 * 60 * 60 * 24;
+
+		    var today = new Date();
+
+		    // Convert both dates to milliseconds
+		    var date1_ms = date.getTime();
+		    var date2_ms = today.getTime();
+
+		    // Calculate the difference in milliseconds
+		    var difference_ms = Math.abs(date1_ms - date2_ms);
+
+		    // Convert back to days and return
+		    return Math.round(difference_ms/ONE_DAY);
+
+		}
+
+		function calcWeeksFrom(){
+			let birthdayInput = document.getElementById('birthday');
+			let date = new Date(birthdayInput.value);
+			displayLife( Math.ceil(daysFromDate(date)/7));
+		}
+
+		function displayLife(weeksFrom) {
+			if (isNaN(weeksFrom)){
+				alert("введите ваш день рождения для подсчета");
+			}
+			let container = document.getElementsByClassName("container")[0];
+			let weeks = "";
+			for (let i=0; i<MAX_YEAR; i++){
+
+				weeks+= `<span class="yl">`+ i +`</span>`;
+
+				for(let j=1;j<=52; j++){
+					if (52*i+j == weeksFrom){
+						weeks+=`<div class="week blue"></div>`;
+						continue;
+					}
+					if (52*i+j < weeksFrom){
+						weeks+=`<div class="week red"></div>`;
+						continue;
+					}
+
+					if (52*i+j <= CHILD*52){
+						weeks+=`<div class="week purple"></div>`;
+						continue;
+					}
+
+					if (52*i+j <= SCHOOL*52){
+						weeks+=`<div class="week teal"></div>`;
+						continue;
+					}
+					if (52*i+j <= INSTITUTE*52){
+						weeks+=`<div class="week cornflowerBlue"></div>`;
+						continue;
+					}
+
+					if (52*i+j <= WORK*52){
+						weeks+=`<div class="week darkKhaki"></div>`;
+						continue;
+					}
+					if (52*i+j <= OLD*52){
+						weeks+=`<div class="week saddleBrown"></div>`;
+						continue;
+					}
+
+					if (52*i+j >= OLD*52){
+						weeks+=`<div class="week gray"></div>`;
+						continue;
+					}
+					
+				}
+				weeks+="<br>";
+			}
+			container.innerHTML=weeks;
+		}
+	</script>
+
+</body>
 </html>
