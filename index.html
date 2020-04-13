@@ -2,217 +2,78 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Life</title>
-	<style>
-	body{
-		font-family: Arial, sans-serif;
+	<title>курс гречки</title>
+	<style>	
+	.wt{
+		color:#fff;
 	}
-
-
-	.week {
-		width: 17px;
-		height: 17px;
-		
-		margin:2px;
-		display: inline-block;
-	}
-	.container, .form{
-		margin:auto;
-		width: fit-content;
-	}
-	.form{
-		margin-top:1%;
-		margin-bottom: 1%;
+	.container{
 		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100vh;
+	}
+	.centerCont{
+		
+		width:100%;
+		background-color:rgba(0,0,0,.5);
 
 	}
-	button{
-		margin-top:10%;
+	.subCenterCont{
+		display: flex;
+		justify-content: space-around;
 		width: 100%;
 	}
-	input{
-		margin-top: 5%;
-	}
 
-	.disc{
-		margin-left: 10px;
-	}
-
-	.yl{
-		margin-right: 4px;
-		width: 26px;
-		font-size:22px;
-		text-align: right;
-		display: inline-block;
+	p{
+		font-size:3rem;
 
 	}
-	.red{
-		background-color:red;
-	}
-	.green{
-		background-color:green;
-	}
 
-	.blue{
-		background-color:blue;
-	}
-
-	.purple{
-		background-color: purple;
-	}
-	
-	.teal{
-		background-color: teal;
-	}
-
-	.cornflowerBlue{
-		background-color: cornflowerBlue;
-	}
-	.darkKhaki{
-		background-color: darkKhaki;
-	}
-
-	.saddleBrown{
-		background-color: saddleBrown;
-	}
-	.gray{
-		background-color: gray;
+	h1{
+		font-size: 5rem;
 	}
 
 </style>
 </head>
-<body>
-	<div class="form">
-		<form action="">
-			<input id="birthday" type="date" required><br>
-			<button id="submit" type="button" onclick="calcWeeksFrom()">посчитать</button>
-		</form>
-		<div class="disc">
-			<div class="week purple"></div> <span>- детство</span><br>
-			<div class="week teal"></div> <span>- школа</span><br>
-			<div class="week cornflowerBlue"></div> <span>- институт</span><br>
+<body style="background: url(./grechka_background.jpg);">
+	<div class="container">	
+		<div class="centerCont">	
+			<h1 class="wt" align="center">КУРС ГРЕЧКИ</h1>
+			<div class="subCenterCont">
+				<p class="wt" id="uah"> </p>
+				<p class="wt" id="eur"> </p>
+				<p class="wt" id="rub"> </p>
+				<p class="wt" id="btc"> </p>
+			</div>
 			
-		</div>
-		<div class="disc">
-			<div class="week darkKhaki"></div> <span>- работа</span><br>
-			<div class="week saddleBrown"></div> <span>- пенсия</span><br>
-			<div class="week gray"></div> <span>- не расчитывай</span><br>
-		</div>
-		<div class="disc">
-			<div class="week blue"></div> <span>- текущая неделя</span><br>
-			<div class="week red"></div> <span>- прошедшие недели</span><br>
-			
-		</div>
-	</div>
-
-	<div class="container">
-		
+		</div>	
 	</div>
 
 	<script>
-		var MAX_YEAR = 100;
-		var CHILD = 6;
-		var SCHOOL = 17;
-		var INSTITUTE = 23;
-		var WORK = 60;
-		var OLD = 70;
+		
+		var xhr = new XMLHttpRequest();
 
+// 2. Конфигурируем его: GET-запрос на URL 'phones.json'
+xhr.open('GET', 'https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11', false);
 
-		var input = document.getElementById("birthday");
+// 3. Отсылаем запрос
+xhr.send();
 
-		// Execute a function when the user releases a key on the keyboard
-		input.addEventListener("keyup", function(event) {
-		  // Number 13 is the "Enter" key on the keyboard
-		  if (event.keyCode === 13) {
-		    // Cancel the default action, if needed
-		    event.preventDefault();
-		    // Trigger the button element with a click
-		    document.getElementById("submit").click();
-		}
-		});
-
-
-
-
-function daysFromDate(date) {
-
-		    // The number of milliseconds in one day
-		    var ONE_DAY = 1000 * 60 * 60 * 24;
-
-		    var today = new Date();
-
-		    // Convert both dates to milliseconds
-		    var date1_ms = date.getTime();
-		    var date2_ms = today.getTime();
-
-		    // Calculate the difference in milliseconds
-		    var difference_ms = Math.abs(date1_ms - date2_ms);
-
-		    // Convert back to days and return
-		    return Math.round(difference_ms/ONE_DAY);
-
-		}
-
-		function calcWeeksFrom(){
-			let birthdayInput = document.getElementById('birthday');
-			let date = new Date(birthdayInput.value);
-			displayLife( Math.ceil(daysFromDate(date)/7));
-		}
-
-		function displayLife(weeksFrom) {
-			if (isNaN(weeksFrom)){
-				alert("введите ваш день рождения для подсчета");
-			}
-			let container = document.getElementsByClassName("container")[0];
-			let weeks = "";
-			for (let i=0; i<MAX_YEAR; i++){
-
-				weeks+= `<span class="yl">`+ i +`</span>`;
-
-				for(let j=1;j<=52; j++){
-					if (52*i+j == weeksFrom){
-						weeks+=`<div class="week blue"></div>`;
-						continue;
-					}
-					if (52*i+j < weeksFrom){
-						weeks+=`<div class="week red"></div>`;
-						continue;
-					}
-
-					if (52*i+j <= CHILD*52){
-						weeks+=`<div class="week purple"></div>`;
-						continue;
-					}
-
-					if (52*i+j <= SCHOOL*52){
-						weeks+=`<div class="week teal"></div>`;
-						continue;
-					}
-					if (52*i+j <= INSTITUTE*52){
-						weeks+=`<div class="week cornflowerBlue"></div>`;
-						continue;
-					}
-
-					if (52*i+j <= WORK*52){
-						weeks+=`<div class="week darkKhaki"></div>`;
-						continue;
-					}
-					if (52*i+j <= OLD*52){
-						weeks+=`<div class="week saddleBrown"></div>`;
-						continue;
-					}
-
-					if (52*i+j >= OLD*52){
-						weeks+=`<div class="week gray"></div>`;
-						continue;
-					}
-					
-				}
-				weeks+="<br>";
-			}
-			container.innerHTML=weeks;
-		}
-	</script>
-
+// 4. Если код ответа сервера не 200, то это ошибка
+if (xhr.status != 200) {
+  // обработать ошибку
+  alert( xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found
+} else {
+	json = JSON.parse(xhr.responseText);
+  // вывести результат
+  //alert( xhr.responseText ); // responseText -- текст ответа.
+  grcPrice = json[0].buy * (2+ Math.random()*0.01); // dollar *2
+  document.getElementById("uah").innerHTML = grcPrice.toFixed(2) + "UAH";
+  document.getElementById("eur").innerHTML =  (grcPrice /json[1].buy).toFixed(2)  + "EUR";
+  document.getElementById("rub").innerHTML = (grcPrice / json[2].buy).toFixed(2)  + "RUB";
+  document.getElementById("btc").innerHTML = (grcPrice / json[3].buy).toFixed(5)  + "BTC";
+}
+</script>
 </body>
 </html>
